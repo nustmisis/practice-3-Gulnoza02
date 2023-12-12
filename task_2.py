@@ -32,7 +32,7 @@ import re
 
 def get_plate_type(plate):
     # ваше решение:
-import re
+ import re
  
 def get_plate_type(plate):
     # Паттерн для типа 1А
