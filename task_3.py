@@ -39,4 +39,4 @@ print(format_phone_number("1234567890"))       # Вывод: +7 123 456-78-90
 print(format_phone_number("123456789"))        # Вывод: Fail!
 print(format_phone_number("+9 123 456-78-90"))  # Вывод: Fail!
 print(format_phone_number("+7 123 456+78=90"))  # Вывод: Fail!
-return "Fail!"
+"return"  "Fail!"
