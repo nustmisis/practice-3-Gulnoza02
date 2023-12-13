@@ -32,9 +32,7 @@ import re
 
 def get_plate_type(plate):
     # ваше решение:
- import re
- 
-def get_plate_type(plate):
+ def get_plate_type(plate):
     # Паттерн для типа 1А
     pattern_1A = r"[АВЕКМНОРСТУХ]\d{3}[АВЕКМНОРСТУХ]{2}\s\d{2,3}"
     # Паттерн для типа 1Б
@@ -43,7 +41,6 @@ def get_plate_type(plate):
     pattern_2 = r"[аАоО][НТМУХ][\dАВЕКМНОРСТУХ]{4}\s\d{2,3}"
     # Паттерн для типа 3
     pattern_3 = r"\d{4}[мМ]{2}\s\d{2,3}"
-   
     # Проверяем соответствие паттернам
     if re.match(pattern_1A, plate):
         return "1A"

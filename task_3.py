@@ -29,8 +29,6 @@ format_phone_number!
 """
 
 import re
-
-
 def format_phone_number(text):
     # ваше решение:
  print(format_phone_number("+7 123 456-78-90"))  # Вывод: +7 123 456-78-90

@@ -12,27 +12,19 @@ PATTERN_1, ..., PATTERN_4, REPL_1, ... REPL_4!
 
 
 # Пример:
-
-
 # ввод       вывод
 # a b c ---> a bb c
 # b b a ---> bb bb a
 # a c a ---> a c a
 _PATTERN_0 = r"(b)"  # строка поиска
 _REPL_0 = r"\1\1"  # строка замены
-
-
 # Ваше решение:
-
-
 # aAc   ---> a!A!c
 # aZc   ---> a!Z!c
 # aZZc  ---> a!Z!!Z!c
 # aBaCa ---> a!B!a!C!a
 PATTERN_1 = "(a)([A-Za-z])"
 REPL_1 = "\1!\2!"
-
-
 # abc    ---> abc
 # abbc   ---> abc
 # azzzc  ---> azc
@@ -40,8 +32,6 @@ REPL_1 = "\1!\2!"
 # xxxxxx ---> x
 PATTERN_2 = "(.)\1+"
 REPL_2 = "\1"
-
-
 # this is text         ---> this is text
 # this is is text      ---> this *is* text
 # this is is is text   ---> this *is* text
@@ -49,7 +39,6 @@ REPL_2 = "\1"
 # this is is text text ---> this *is* *text*
 PATTERN_3 = "\b(\w+)\b\s+\1\b"
 REPL_3 = "\1"
-
 # one two three ---> two one three
 # dog cat wolf  ---> cat dog wolf
 # goose car rat ---> goose rat car
