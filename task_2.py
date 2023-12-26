@@ -26,29 +26,36 @@ https://ru.wikipedia.org/wiki/%D0%A0%D0%B5%D0%B3%D0%B8%D1%81%D1%82%D1%80%D0%B0%D
 Для корректной работы автоматических тестов не переименовывайте функцию
 get_plate_type!
 """
-
 import re
 
+def get_plate_type(license_plate):
+    patterns = [
+        (r'^[АВЕКМНОРСТУХAEEKMHOPCTYX]{1}\d{3}[АВЕКМНОРСТУХAEEKMHOPCTYX]{2}\s\d{2}$', '1А'),
+        (r'^[АВЕКМНОРСТУХAEEKMHOPCTYX]{2}\d{3}[АВЕКМНОРСТУХAEEKMHOPCTYX]{1}\s\d{2}$', '1А'),
+        (r'^[АВЕКМНОРСТУХAEEKMHOPCTYX]{2}\d{3}\s\d{2}$', '1Б'),
+        (r'^[АВЕКМНОРСТУХAEEKMHOPCTYX]{2}\d{4}\s\d{2}$', '2'),
+        (r'^\d{4}[АВЕКМНОРСТУХAEEKMHOPCTYX]{2}\s\d{2}$', '3')
+    ]
+
+    license_plate = license_plate.upper()
+
+    for pattern, plate_type in patterns:
+        if re.match(pattern, license_plate):
+            return plate_type
+
+    return "Fail!"
+import re
 
 def get_plate_type(plate):
     # ваше решение:
- def get_plate_type(plate):
-    # Паттерн для типа 1А
-    pattern_1A = r"[АВЕКМНОРСТУХ]\d{3}[АВЕКМНОРСТУХ]{2}\s\d{2,3}"
-    # Паттерн для типа 1Б
-    pattern_1B = r"[аАоО][АВЕКМНОРСТУХ]{2}\d{3}\s\d{2,3}"
-    # Паттерн для типа 2
-    pattern_2 = r"[аАоО][НТМУХ][\dАВЕКМНОРСТУХ]{4}\s\d{2,3}"
-    # Паттерн для типа 3
-    pattern_3 = r"\d{4}[мМ]{2}\s\d{2,3}"
-    # Проверяем соответствие паттернам
-    if re.match(pattern_1A, plate):
-        return "1A"
-    elif re.match(pattern_1B, plate):
-        return "1B"
-    elif re.match(pattern_2, plate):
+    num_letters = set('авекмнорстухabekmhopctyx')
+    if len(plate) == 9 and plate[0] in num_letters and plate[1:4].isdigit() and num_letters.intersection(set(plate[4:6])) == set(plate[4:6]) and plate[-2:].isdigit():
+        return "1А"
+    elif len(plate) == 8 and num_letters.intersection(set(plate[0:2])) == set(plate[0:2]) and plate[2:5].isdigit() and plate[-2:].isdigit():
+        return "1Б"
+    elif len(plate) == 9 and num_letters.intersection(set(plate[0:2])) == set(plate[0:2]) and plate[2:6].isdigit() and plate[-2:].isdigit():
         return "2"
-    elif re.match(pattern_3, plate):
+    elif len(plate) == 9 and plate[0:4].isdigit() and num_letters.intersection(set(plate[4:6])) == set(plate[4:6]) and plate[-2:].isdigit():
         return "3"
     else:
-     return "Fail!"
+        return "Fail!"
