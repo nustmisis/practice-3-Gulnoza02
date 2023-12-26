@@ -23,24 +23,23 @@ _REPL_0 = r"\1\1"  # строка замены
 # aZc   ---> a!Z!c
 # aZZc  ---> a!Z!!Z!c
 # aBaCa ---> a!B!a!C!a
-PATTERN_1 = "(a)([A-Za-z])"
-REPL_1 = "\1!\2!"
+PATTERN_1 = r"([A-Z])"
+REPL_1 = r"!\1!"
+
+
 # abc    ---> abc
 # abbc   ---> abc
 # azzzc  ---> azc
 # arrrrc ---> arc
 # xxxxxx ---> x
-PATTERN_2 = "(.)\1+"
-REPL_2 = "\1"
+PATTERN_2 = r"(.)\1+"
+REPL_2 = r"\1"
+
+
 # this is text         ---> this is text
 # this is is text      ---> this *is* text
 # this is is is text   ---> this *is* text
 # this is text text    ---> this is *text*
 # this is is text text ---> this *is* *text*
-PATTERN_3 = "\b(\w+)\b\s+\1\b"
-REPL_3 = "\1"
-# one two three ---> two one three
-# dog cat wolf  ---> cat dog wolf
-# goose car rat ---> goose rat car
-PATTERN_4 = "(\b\w+\b)\s(\b\w+\b)"
-REPL_4 = "\2 \1"
+PATTERN_3 = r"((?<= )\w+) ?( \1)+"
+REPL_3 = r"*\1*"
